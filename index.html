@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website</title>
+    <!--= Google Fonts =-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"/>
+
+
+    <!--= Remixicons=-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!--= SwiperJS CSS =-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+
+
+    <!--= Main CSS =-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> 
+    <style>
+        :root {
+  /* Colors
+  ____________________*/
+  --color-primary: #f4efef;
+  --color-primary-dark: #208c61;
+  --color-bg-primary: #0a0a0a;
+  --color-bg-secondary: #242424;
+  --color-bg-footer: #151515;
+  --color-white: #ffffff;
+  --color-text: #f8f8f8;
+  --color-border: #373737;
+
+  /* Font & Typography
+  ___________________*/
+  --ff-body: "Space Grotesk", sans-serif;
+  /* font sizes */
+  --fs-sm: 1.4rem;
+  --fs-md: 1.6rem;
+  --fs-lg: 2rem;
+  --fs-xl: 2.4rem;
+  --fs-xxl: 3.2rem;
+  --fs-biggest: clamp(3rem, 8vw, 5rem);
+  /* font weight */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* z-index
+  ___________________*/
+  --zindex-menu: 1000;
+  --zindex-fixed: 1010;
+
+  /* With & Height 
+  ------------------*/
+  --width-container: 98rem;
+  --height-header: 10rem;
+  --height-header--scroll: 8rem;
+
+  /* Transition and box shadow*/
+  --transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  --box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* CSS Reset
+--------------------------------------------------------------*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--color-white);
+  font-weight: var(--fw-bold);
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+ul,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+main {
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  font-family: var(--ff-body);
+  font-size: var(--fs-md);
+  color: var(--color-text);
+  margin-top: var(--height-header);
+  line-height: 1.2;
+}
+
+/* Reusable CSS
+--------------------------------------------------------------*/
+.container {
+  width: 90%;
+  max-width: var(--width-container);
+  margin: auto;
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+.section__header {
+  margin: 8rem 0;
+  text-align: center;
+}
+
+.section__title {
+  font-size: var(--fs-xl);
+  margin-bottom: 0.5rem;
+}
+
+.section__subtitle {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-md);
+  position: relative;
+}
+
+.section__subtitle::after {
+  position: absolute;
+  content: "";
+  width: 50%;
+  height: 0.5rem;
+  background-color: var(--color-primary);
+  bottom: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.d-grid {
+  display: grid;
+  gap: 3rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 1.5rem 4rem;
+  color: var(--color-white);
+  font-weight: var(--fw-semibold);
+  transition: var(--transition);
+}
+
+.btn--primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn--primary:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.btn--secondary {
+  background-color: var(--color-white);
+  color: var(--color-bg-primary);
+}
+
+.btn--secondary:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* Header
+--------------------------------------------------------------*/
+.header {
+  background-color: var(--color-bg-primary);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  height: var(--height-header);
+  z-index: var(--zindex-menu);
+  transition: var(--transition);
+}
+
+.header--scroll {
+  height: var(--height-header--scroll);
+  box-shadow: var(--box-shadow);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.nav__brand {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
+.nav__brand i {
+  color: var(--color-white);
+}
+
+.nav__list {
+  display: flex;
+  column-gap: 4rem;
+}
+
+.nav__link {
+  transition: var(--transition);
+}
+
+.nav__link:hover {
+  color: var(--color-primary);
+}
+
+.nav__toggle {
+  display: none;
+  font-size: var(--fs-xl);
+  color: var(--color-white);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.nav__toggle:hover {
+  color: var(--color-primary);
+}
+
+@media screen and (max-width: 968px) {
+  .nav__list {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 4rem;
+  }
+
+  .nav__menu {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--color-bg-primary);
+    display: none;
+    justify-content: center;
+    transition: var(--transition);
+  }
+
+  .nav__menu--open {
+    display: flex;
+  }
+
+  .nav__toggle {
+    display: block;
+  }
+
+  .nav__brand,
+  .nav__toggle {
+    z-index: var(--zindex-fixed);
+  }
+}
+
+/* Hero
+--------------------------------------------------------------*/
+.hero__wrapper {
+  min-height: calc(100vh - var(--height-header));
+  padding: 5rem 0;
+}
+
+.hero__content {
+  left: 20%;
+}
+
+.hero__title {
+  font-size: var(--fs-biggest);
+  margin-bottom: 5rem;
+  position: relative;
+
+}
+
+.hero__title::after {
+  position: absolute;
+  content: "";
+  background-color: var(--color-primary);
+  width: 10rem;
+  height: 0.5rem;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.hero__description {
+  margin-bottom: 5rem;
+}
+
+.hero__info {
+  border-top: 1px solid var(--color-border);
+  padding-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5rem;
+}
+
+.hero__info-number {
+  font-size: var(--fs-xxl);
+  font-weight: var(--fw-bold);
+  color: var(--color-white);
+  margin-bottom: 1rem;
+}
+
+.hero__info-title {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  color: var(--color-text);
+}
+@media screen and (max-width: 968px){
+  .hero__img{
+    border-radius: 50%;
+  }
+}
+
+
+
+/* About
+--------------------------------------------------------------*/
+.about__content {
+  max-width: 50rem;
+  margin: auto;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.about__title {
+  font-size: var(--fs-xxl);
+  margin-bottom: 3rem;
+}
+
+.about__description {
+  margin-bottom: 3rem;
+}
+
+.skills {
+  justify-self: center;
+}
+
+.skills__title {
+  font-size: var(--fs-lg);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.skills__wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.skills__content {
+  background-color: var(--color-bg-secondary);
+  box-shadow: var(--box-shadow);
+  padding: 3rem;
+}
+
+.skills__item {
+  margin-bottom: 1rem;
+}
+
+.skills__subtitle {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.skills__item i {
+  color: var(--color-primary);
+}
+
+/* Qualification
+--------------------------------------------------------------*/
+.qualification__wrapper {
+  margin-bottom: 5rem;
+}
+
+.qualification__content {
+  row-gap: 5rem;
+}
+
+.qualification__name {
+  display: flex;
+  column-gap: 1rem;
+  font-size: var(--fs-lg);
+  margin-bottom: 5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.qualification__title {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-medium);
+  margin-bottom: 1rem;
+}
+
+.qualification__description {
+  margin-bottom: 2rem;
+}
+
+.qualification__date {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+}
+
+.qualification__footer {
+  border-top: 1px solid var(--color-border);
+  margin-top: 10rem;
+  padding-top: 4rem;
+  text-align: center;
+}
+
+.qualification__footer-text {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-white);
+  margin-bottom: 2rem;
+}
+
+/* Services
+--------------------------------------------------------------*/
+.service__card {
+  background-color: var(--color-bg-secondary);
+  box-shadow: var(--box-shadow);
+  padding: 5rem 3.5rem;
+  width: 100%;
+  max-width: 30rem;
+  justify-self: center;
+  transition: var(--transition);
+}
+
+.service__card:hover {
+  background-color: var(--color-primary);
+}
+
+.service__card:hover .service__link {
+  color: var(--color-white);
+}
+
+.service__icon {
+  font-size: 3.5rem;
+  color: var(--color-white);
+  margin-bottom: 1.5rem;
+}
+
+.service__title {
+  font-size: var(--fs-lg);
+  margin-bottom: 3rem;
+}
+
+/* Projects
+--------------------------------------------------------------*/
+.project__content {
+  width: 100%;
+  max-width: 30rem;
+  justify-self: center;
+}
+
+.project__img {
+  margin-bottom: 2rem;
+}
+
+.project__title {
+  color: var(--color-white);
+  font-size: var(--fs-lg);
+  margin-bottom: 1rem;
+}
+
+.project__description {
+  margin-bottom: 2rem;
+}
+
+.project__link {
+  font-size: var(--fs-sm);
+  text-transform: uppercase;
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  transition: var(--transition);
+}
+
+.project__link:hover {
+  color: var(--color-primary);
+  column-gap: 1rem;
+}
+
+/* Testimonials
+--------------------------------------------------------------*/
+.testimonial__card {
+  background-color: var(--color-bg-secondary);
+  box-shadow: var(--box-shadow);
+  padding: 3rem 5rem;
+  width: 100%;
+  max-width: 50rem;
+  text-align: center;
+  justify-self: center;
+  margin-bottom: 2rem;
+}
+
+.testimonial__img {
+  max-width: 10rem;
+  border-radius: 50%;
+  margin: auto;
+  margin-bottom: 3rem;
+}
+
+.testimonial__description {
+  color: var(--color-white);
+  margin-bottom: 3rem;
+}
+
+.testimonial__name {
+  font-size: var(--fs-md);
+  margin-bottom: 0.5rem;
+}
+
+.testimonial__occupation {
+  font-size: var(--fs-sm);
+}
+
+/* testimonial slide */
+.testimonial__wrapper .swiper-wrapper {
+  padding-bottom: 5rem;
+}
+
+.testimonial__wrapper .swiper-pagination-bullets {
+  justify-content: space-around;
+}
+
+.testimonial__wrapper .swiper-pagination-bullet {
+  background-color: var(--color-text);
+  border-radius: 0;
+  width: 3rem;
+  height: 0.5rem;
+}
+
+.testimonial__wrapper .swiper-pagination-bullet-active {
+  background-color: var(--color-primary);
+}
+
+/* Contact
+--------------------------------------------------------------*/
+.contact__wrapper {
+  border-top: 1px solid var(--color-border);
+  padding-top: 3rem;
+  text-align: center;
+}
+
+.contact__title {
+  font-size: var(--fs-xxl);
+  margin-bottom: 2rem;
+}
+
+.contact__content {
+  max-width: 45rem;
+  margin: auto;
+}
+
+.contact__description {
+  margin-bottom: 2rem;
+}
+
+/* Footer
+--------------------------------------------------------------*/
+.footer {
+  background-color: var(--color-bg-footer);
+  padding: 5rem 0;
+}
+
+.footer__wrapper {
+  border-bottom: 1px solid var(--color-bg-secondary);
+  padding: 5rem 0;
+  gap: 5rem;
+}
+
+.footer__title {
+  font-size: var(--fs-lg);
+  margin-bottom: 2rem;
+}
+
+.footer__social-list {
+  display: flex;
+  gap: 3rem;
+}
+
+.footer__social-link {
+  font-size: 2rem;
+  color: var(--color-white);
+  transition: var(--transition);
+}
+
+.footer__contact {
+  font-size: var(--fs-lg);
+  color: var(--color-white);
+  font-weight: var(--fw-bold);
+  text-decoration: underline;
+  transition: var(--transition);
+}
+
+.footer__social-link:hover,
+.footer__contact:hover {
+  color: var(--color-primary);
+}
+
+.footer__copyright {
+  font-size: var(--fs-sm);
+  text-align: center;
+  padding-top: 3rem;
+}
+
+/* Scrollbar
+--------------------------------------------------------------*/
+::-webkit-scrollbar {
+  width: 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-text);
+  border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-primary);
+}
+
+/* Breakpoints
+--------------------------------------------------------------*/
+
+/* Medium devices*/
+@media screen and (min-width: 560px) {
+  .service__wrapper {
+    grid-template-columns: repeat(2, 250px);
+    justify-content: center;
+  }
+
+  .qualification__content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .qualification__footer {
+    text-align: initial;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .qualification__footer-text {
+    margin: 0;
+  }
+
+  .project__wrapper {
+    grid-template-columns: repeat(2, 250px);
+    justify-content: center;
+  }
+
+  .footer__wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .hero__wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+  }
+
+  .hero__content {
+    text-align: initial;
+  }
+
+  .hero__title::after {
+    transform: none;
+    left: 0;
+  }
+
+  .hero__info {
+    justify-content: initial;
+  }
+
+  .hero__img {
+    justify-self: flex-end;
+  }
+  .heee{
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;    /* Centers vertically */
+    height: 100vh;  
+}
+.hero__img{
+  border-radius: 10%;
+  width: 80%;
+  height: 80%;
+  border: 5px solid rgb(41, 42, 42);
+}
+}
+
+/* Large devices */
+
+@media screen and (min-width: 968px) {
+  .about__wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about__content {
+    margin: 0;
+  }
+
+  .about__content,
+  .skills__title {
+    text-align: initial;
+  }
+
+  .qualification__content,
+  .service__wrapper,
+  .project__wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .contact__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .contact__content {
+    margin: 0;
+    text-align: initial;
+  }
+
+  .footer__wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.heee{
+  position: relative;
+  height: 60%;
+  right: 1%;
+  top:1%;
+}
+.hero__img{
+  border-radius: 20%;
+  width: 80%;
+  height: 80%;
+  border: 15px solid rgb(41, 42, 42);
+}
+.nav__btns {
+  display: flex;
+  align-items: center;
+}
+
+.change-theme {
+  font-size: 1.25rem;
+  color: var(--title-color);
+  margin-right: var(--mb-1);
+  cursor: pointer;
+}
+
+.change-theme:hover {
+  color: var(--first-color);
+}
+body.dark-theme {
+  /*========= HSL Color mode =========*/
+
+  --first-color-second: hsl(var(--hue-color), 30%, 8%);
+  --title-color: hsl(var(--hue-color), 8%, 95%);
+  --text-color: hsl(var(--hue-color), 8%, 75%);
+  --input-color: hsl(var(--hue-color), 29%, 16%);
+  --body-color: hsl(var(--hue-color), 28%, 12%);
+  --container-color: hsl(var(--hue-color), 29%, 16%);
+  --scroll-bar-color: hsl(var(--hue-color), 12%, 48%);
+  --scroll-thumb-color: hsl(var(--hue-color), 12%, 36%);
+}
+.chatbox {
+  width: 400px;
+  height: 500px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  overflow-y: scroll;
+}
+.user-message, .bot-message {
+  margin: 10px 0;
+}
+.user-message {
+  text-align: right;
+}
+.bot-message {
+  text-align: left;
+}
+input[type="text"] {
+  width: 300px;
+  padding: 10px;
+}
+button {
+  padding: 10px;
+}
+    </style>
+
+</head>
+
+<body>
+
+    <!--= Header =-->
+    <header id="header" class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="nav__brand">
+                    <i class="ri-code-s-slash-line"></i>Developer
+                </a>
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="#hero" class="nav__link">Home</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#about" class="nav__link">About</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#qualification" class="nav__link">Qualification</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#service" class="nav__link">Services</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#project" class="nav__link">Projects</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#contact" class="nav__link">Contact</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#projecd" class="nav__link">Certificate</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav__toggle">
+                    <i id="nav-toggle" class="ri-menu-3-line"></i>
+                </div>
+            </nav>
+            <div class="nav__btns">
+                <!-- Theme change button 
+                <i class="uil uil-moon change-theme" id="theme-button"></i>
+      
+                <div class="nav__toggle" id="nav-toggle">
+                  <i class="uil uil-apps"></i>
+                </div>
+            </div>-->
+        </div>
+    </header>
+    <!--= main =-->
+    <main class="main">
+        <!--= Hero =-->
+        <section id="hero" class="hero">
+            <div class="container">
+                <div class="d-grid hero__wrapper">
+                    <div class="hero__content">
+                        <h1 class="hero__title">Hi, I HARSH SHUKLA,<br><span class="iuu">Web Developer.</span></h1>
+                        <p class="hero__description">I'm a third-year student specializing in animation, video editing, and web development. I create captivating animations and polish videos with professional editing skills. Additionally, I develop dynamic, user-friendly websites that blend creativity with technical expertise.</p>
+                        <div class="hero__info">
+                            <div class="hero__info-wrapper">
+                                <p class="hero__info-number">1</p>
+                                <h2 class="hero__info-title">Years<br>Experience</h2>
+                            </div>
+                            <div class="hero__info-wrapper">
+                                <p class="hero__info-number">7+</p>
+                                <h2 class="hero__info-title">Projects<br>Completed</h2>
+                            </div>
+                            <div class="hero__info-wrapper">
+                                <p class="hero__info-number">00</p>
+                                <h2 class="hero__info-title">Companies<br> Worked</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="heee">
+                        <img src="hero1.jpg" alt="Dave" class="hero__img">
+                    </div>-->
+                </div>
+            </div>
+        </section>
+
+        <!--= About =-->
+        <section id="about" class="section about">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">About Me</h2>
+                    <span class="section__subtitle"></span>
+                </div>
+                <div class="d-grid about__wrapper">
+                    <div class="about__content">
+                        <h3 class="about__title">I'm a Frontend Developer.</h3>
+                        <p class="about__description">A portfolio website is a unique way to showcase your work and let
+                            others know about yourself. it’s one of the best ways to express your
+                            personality, experience, and capabilities .</p>
+                        <!--<a href="#" class="btn btn--primary">Know More</a>-->
+                    </div>
+                    <div class="skills">
+                        <h3 class="skills__title">Technologies I've been working with:</h3>
+                        <div class="skills__wrapper">
+                            <div class="skills__content">
+                                <h4 class="skills__subtitle">Language</h4>
+                                <ul class="skills__list">
+                                   <!-- <li class="skills__item"><i class="ri-arrow-right-s-fill"></i>
+                                        Python</li>
+                                    <li class="skills__item"><i class="ri-arrow-right-s-fill"></i>
+                                        JAVA</li>
+                                    <li class="skills__item"><i class="ri-arrow-right-s-fill"></i>
+                                        Node.js</li>
+                                    <li class="skills__item"><i class="ri-arrow-right-s-fill"></i>
+                                        Firebase</li>
+                                    <li class="skills__item"><i class="ri-arrow-right-s-fill"></i>
+                                        MongoDB</li>
+                                    <li class="skills__item"><i class="ri-arrow-right-s-fill"></i>
+                                        MySQL</li>-->
+                                </ul>
+                            </div>
+                            <div class="skills__content">
+                                <h4 class="skills__subtitle">Language</h4>
+                                <ul class="skills__list">
+                                    <li class="skills__item"><i class="ri-arrow-right-s-fill"></i>
+                                        HTML</li>
+                                    <li class="skills__item"><i class="ri-arrow-right-s-fill"></i>
+                                        CSS</li>
+                                    <li class="skills__item"><i class="ri-arrow-right-s-fill"></i>
+                                        JAVASCRIPT</li>
+                                    <!--<li class="skills__item"><i class="ri-arrow-right-s-fill"></i>
+                                        Bootstrap</li>-->
+                                    <li class="skills__item"><i class="ri-arrow-right-s-fill"></i>
+                                        PYTHON</li>
+                                    <li class="skills__item"><i class="ri-arrow-right-s-fill"></i>
+                                        JAVA</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--= Qualification =-->
+        <section id="qualification" class="section qualification">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">Qualification</h2>
+                    <span class="section__subtitle">Experience & Education</span>
+                </div>
+                <!--= Professional Experience =-->
+                <div class="qualification__wrapper">
+                    <h3 class="qualification__name">
+                        <i class="ri-briefcase-fill"></i>
+                        Professional Experience
+                    </h3>
+                    <div class="d-grid qualification__content">
+                        <!--= Experience 1 =-->
+                        <div class="qualification__item">
+                            <h3 class="qualification__title">Web Developer </h3>
+                            <p class="qualification__description"> Made the PROJECT DRYERZ , an online dry cleaning site to make the people book their slot and get their good one's on time.</p>
+                            <span class="qualification__date">Jan 2024 - Present</span>
+                        </div>
+                        <!--= Experience 2 =-->
+                        <div class="qualification__item">
+                            <h3 class="qualification__title">Frontend Lead at HOSPITAL MANAGEMENT PROJECT</h3>
+                            <p class="qualification__description"> It provides a convenient way for potential clients to
+                                book their slots with near by Doctor.</p>
+                            <span class="qualification__date">2023 - 2024</span>
+                        </div>
+                        <!--= Experience 3 =-->
+                        <div class="qualification__item">
+                            <h3 class="qualification__title">3D ANIMATION</h3>
+                            <p class="qualification__description"> It provides a convenient way for me to
+                                view my imaginationof  work while also allowing me to expand on my skills and services.</p>
+                            <span class="qualification__date">2023 - 2024</span>
+                        </div>
+                    </div>
+                </div>
+                <!--= Education =-->
+                <div class="qualification__wrapper">
+                    <h3 class="qualification__name">
+                        <i class="ri-booklet-fill"></i>
+                        Education
+                    </h3>
+                    <div class="d-grid qualification__content">
+                        <!--= Education 1 =-->
+                        <div class="qualification__item">
+                            <h3 class="qualification__title">ST.THOMAS SCHOOL</h3>
+                            <p class="qualification__description"> PERCENTAGE = 89%</p>
+                            <span class="qualification__date">2008 - 2019</span>
+                        </div>
+                        <!--= Education 2 =-->
+                        <div class="qualification__item">
+                            <h3 class="qualification__title">VIVEKANAND SCHOOL</h3>
+                            <p class="qualification__description">PERCENTAGE = 95.2%</p>
+                            <span class="qualification__date">2019 - 2021</span>
+                        </div>
+                        <!--= Education 3 =-->
+                        <div class="qualification__item">
+                            <h3 class="qualification__title">VIT BHOPAL</h3>
+                            <p class="qualification__description"> CGPA=8.03</p>
+                            <span class="qualification__date">2022 - 2026</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="qualification__footer">
+                    <p class="qualification__footer-text">See my full resume</p>
+                    <a href="assets/RESUME/" class="btn btn--primary">Resume</a>
+                </div>
+            </div>
+        </section>
+
+        <!--= services =-->
+        <section id="service" class="section service">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">Services</h2>
+                    <span class="section__subtitle">What I do</span>
+                </div>
+                <div class="d-grid service__wrapper">
+                    <!--= service card 1 =-->
+                    <div class="service__card">
+                        <div class="service__icon">
+                            <i class="ri-layout-4-fill"></i>
+                        </div>
+                        <h3 class="service__title">Frontend<br>Development</h3>
+                        <a href="#project" class="service__link">Know More</a>
+                    </div>
+                    <!--= service card 2 =-->
+                    <div class="service__card">
+                        <div class="service__icon">
+                            <i class="ri-code-s-slash-line"></i>
+                        </div>
+                        <h3 class="service__title">Backend<br> Development</h3>
+                        <a href="#project" class="service__link">Know More</a>
+                    </div>
+                    <!--= service card 3 =-->
+                    <div class="service__card">
+                        <div class="service__icon">
+                            <i class="ri-pen-nib-fill"></i>
+                        </div>
+                        <h3 class="service__title">3D ANIMATION<br> Design</h3>
+                        <a href="#project" class="service__link">Know More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--= Projects =-->
+        <section id="projecd" class="section project">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">CERTIFICATES</h2>
+                    <span class="section__subtitle"></span>
+                </div>
+                <div class="d-grid project__wrapper">
+                    <!--= project 1 =-->
+                    <div class="project__content">
+                        <img src="CERTI.jpg"  class="project__img">
+                        <h3 class="project__title">NPTEL COURSE</h3>
+                        <p class="project__description"> CLOUD COMPUTING EXAM PASSED WITH SILVER + ELITE</p>
+                        <a href="CERTI.jpg" target="_blank" class="project__link">View 
+                            <i class="ri-arrow-right-line"></i></a>
+                    </div>
+                    <!--= project 2 =-->
+                    <div class="project__content">
+                        <img src="CERTI2.jpg"  class="project__img">
+                        <h3 class="project__title">SIMULINK </h3>
+                        <p class="project__description"> COMPLETED THE COURSE 100% PERCENT WITHIN THE GIVEN TIME PERIOD.</p>
+                        <a href="CERTI2.jpg" target="_blank" class="project__link">View 
+                            <i class="ri-arrow-right-line"></i></a>
+                    </div>
+                    <!--= project 3 =-->
+                    <div class="project__content">
+                        <img src="CERTI3.jpg"  class="project__img">
+                        <h3 class="project__title">THE BITS AND BYTES OF COMPUTER NETWORKING</h3>
+                        <p class="project__description">COMPLETED THE COURSE WITHIN 25H.</p>
+                        <a href="CERTI3.jpg" target="_blank" class="project__link">View 
+                            <i class="ri-arrow-right-line"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--= Testimonials =-->
+        <section id="project" class="section testimonial">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">PROJECTS</h2>
+                    <span class="section__subtitle">My recent work</span>
+                </div>
+                <div class="testimonial__wrapper swiper">
+
+                    <div class="swiper-wrapper">
+                        <!--= testimonial 1 = -->
+                        <div class="testimonial__card swiper-slide">
+                            <img src="testimonial1.jpg"  class="testimonial__img">
+                            <div class="testimonial__content">
+                                <p class="testimonial__description"> It provides a convenient way for potential clients to book for their
+                                    work..</p>
+                                <h3 class="testimonial__name">E COMMERCE WEBSITE</h3>
+                                <span class="testimonial__occupation">XAMPP SERVER</span>
+                            </div>
+                        </div>
+                        <!--========= testimonial 2 ============ -->
+                        <div class="testimonial__card swiper-slide">
+                            <img src="testimonial2.jpg"  class="testimonial__img">
+                            <div class="testimonial__content">
+                                <p class="testimonial__description"> It is a 3D animation of that 3d view of the famous movie "YOUR NAME".</p>
+                                <h3 class="testimonial__name">3D ANIMATION</h3>
+                                <span class="testimonial__occupation">BLENDER</span>
+                            </div>
+                        </div>
+                        <!--========= testimonial 3 ====== -->
+                        <div class="testimonial__card swiper-slide">
+                            <img src="testimonial3.jpg"  class="testimonial__img">
+                            <div class="testimonial__content">
+                                <p class="testimonial__description"> It provides a convenient way for potential clients to view your
+                                    work while also allowing you to expand on your skills and services.</p>
+                                <h3 class="testimonial__name">PORTFOLIO</h3>
+                                <span class="testimonial__occupation">DEVELOPER
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </section>
+
+        <!--======= Contact =======-->
+        <section id="contact" class="section contact">
+            <div class="container">
+                <div class="d-grid contact__wrapper">
+                    <div class="contact__content">
+                        <h2 class="contact__title">Interested in working together? Let's talk</h2>
+                        <p class="contact__description">
+                           HAPPY TO FOR TOGETHER??
+                        </p>
+                    </div>
+                    <div class="contact__btn">
+                        <a href="#" class="btn btn--secondary">Get in touch</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!--======== footer =====-->
+    <footer id="footer" class="footer">
+        <div class="container">
+            <div class="d-grid footer__wrapper">
+                <div class="footer__content">
+                    <h4 class="footer__title">Follow Me</h4>
+                    <ul class="footer__social-list">
+                        <li class="footer__social-item">
+                            <a href="https://www.linkedin.com/in/harsh-shukla-163955249/" target="_blank" class="footer__social-link">
+                                <i class="ri-linkedin-fill"></i>
+                            </a>
+                        </li>
+                        <li class="footer__social-item">
+                            <a href="https://www.instagram.com/_harxssh52?igsh=YjJ4bnZ0NzYxYjU2" target="_blank" class="footer__social-link">
+                                <i class="ri-instagram-fill"></i>
+                            </a>
+                        </li>
+                        </li>
+                        <li class="footer__social-item">
+                            <a href="https://github.com/MrShukla10463" target="_blank" class="footer__social-link">
+                                <i class="ri-github-fill"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__content">
+                    <h4 class="footer__title">Email Me</h4>
+                    <a href="#" class="footer__contact">harshkumarshukla2022@vitbhopal.ac.in</a>
+                </div>
+                <div class="footer__content">
+                    <h4 class="footer__title">Call Me</h4>
+                    <a href="#" class="footer__contact">8368910545</a>
+                </div>
+            </div>
+            <p class="footer__copyright">&copy; 2024 Copyright. All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!--======= SwiperJS  ======-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <!--======= ScrollReveal ======-->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <!--====== Main JS =======-->
+    <script src="main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
+    <script>
+         var typed=new Typed(".iuu",{
+            strings:["Frontend Developer","3D animator","Web Developer","Video Editing"],
+            typedSpeed:70,
+            backSpeed:55,
+            loop:true
+        });
+    </script>
+</body>
+
+</html>
